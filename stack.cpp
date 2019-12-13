@@ -1,36 +1,72 @@
 #include "stack.h"
 #include <iostream>
 
+Stack::Link * Stack::makeNewItem (int i)
+{
+   Link * tmp=new Link;
+   tmp->next=nullptr;
+   tmp->data=i;      
+   return tmp;  
+}
+
+bool Stack::empty()
+{
+   if (head)
+      return false;
+   else 
+      return true;
+}
+
+int Stack::size()
+{
+   int i=0;
+   Link * tmp=head;
+   while(tmp)
+   {
+      i++;
+      tmp=tmp->next;
+   }
+   return i;
+}
+
 void Stack::push(int i)
 {
-   stack.push_back(i);
+   Link *tmp=makeNewItem(i);
+   tmp->next=head;
+   head=tmp;
 }
 
 void Stack::pop()
 {
-   if (stack.empty())
-      std::cout<<"stack is empty"<<std::endl;
-   else
-      stack.pop_back();
+   Link * tmp;
+   if (head!=nullptr)
+   {
+      tmp=head->next;
+      delete head;
+      head=tmp;
+   }
+   else 
+      std::cout<<"stack is empty";
 }
 
 int Stack::top()
 {
- if (stack.empty())
+   if (head)
+      return head->data;
+   else
       {
-         std::cout<<"stack is empty"<<std::endl;
+         std::cout<<"stack is empty";
          return 0;
       }
-   else
-      return stack.back();
 }
 
 Stack::Stack()
 {
-   std::deque<int> stack;
+   head=nullptr;
 }
 Stack::~Stack()
 {
-   stack.clear();
+   while(head)
+      pop();
 }
 

@@ -8,8 +8,16 @@ class Stack
       ~Stack();
       void push(int i);
       void pop();
-      int top();      
+      int top(); 
+      bool empty();
+      int size();     
    private:
-      std::deque<int> stack;
+      struct Link
+      {
+         Link * next;
+         int data;
+      };
+      Link * makeNewItem (int data);
+      Link * head;
    protected:
 };
