@@ -1,5 +1,5 @@
 #include "stack.h"
-
+#include <gtest/gtest.h>
 int main()
 {
    Stack <int> S;
@@ -20,6 +20,7 @@ int main()
    }
    std::cout<<"stack status"<<!S.empty()<<std::endl;
    std::cout<<"stack size "<<S.stackSize()<<std::endl;
+   
    return 0;
    }
    catch (int i)
